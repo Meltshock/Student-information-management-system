@@ -32,7 +32,22 @@ QString DataQuery::connectToDatabase(QString userName,QString password){
 }
 
 bool DataQuery::canLogInSIMS(QString userName,QString password,int type){
-    return true;
+    if(type==1){
+        //教师
+        if(connectToDatabase("T"+userName,password)==""){
+            return true;
+        }else{
+            return false;
+        }
+    }else if(type==2){
+        //学生
+        if(connectToDatabase("S"+userName,password)==""){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
 }
 
 QString DataQuery::init(){
@@ -47,5 +62,46 @@ QString DataQuery::init(){
         }
     }else{
         return "初始化sql文件读取失败！";
+    }
+}
+
+QString DataQuery::insertDept(QString dname,QString dintro){
+    if(dname==""){
+        return "";
+    }
+    db.exec("insert into Dept values('"+dname+"','"+dintro+"')");
+    if(db.lastError().type()==QSqlError::NoError){
+        return "";
+    }else{
+        return db.lastError().text();
+    }
+}
+
+QString DataQuery::insertLesson(QString cno,QString cname,QString cchar,QString cdept,QString ccredit,QString cgrade){
+    //确定选课人数上限
+    QString climit = "50";
+    QString ccur="0";
+    QString sql="insert into CourseBasic values('"+cno+"'";
+    if(cchar.size()>0) sql+=",'"+cname+"'";
+    else sql+=",NULL";
+
+    sql+=","+climit+","+ccur;
+
+    if(cchar.size()>0) sql+=",'"+cchar+"'";
+    else sql+=",NULL";
+
+    if(cdept.size()>0) sql+=",'"+cdept+"'";
+    else sql+=",NULL";
+
+    if(ccredit.size()>0) sql+=",'"+ccredit+"'";
+    else sql+=",NULL";
+
+    sql+=",'"+cgrade+"')";
+    qDebug()<<sql;
+    db.exec(sql);
+    if(db.lastError().type()==QSqlError::NoError){
+        return "";
+    }else{
+        return db.lastError().text();
     }
 }

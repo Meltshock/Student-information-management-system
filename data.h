@@ -44,6 +44,16 @@ public://变量区域
      * 管理员登录教务系统后将更新此cookie
      */
     QString cookie;
+    /**
+     * @brief haveLoggedInSIMS
+     * 标记是否已经登陆过教服系统
+     */
+    bool haveLoggedInSIMS;
+    /**
+     * @brief sno
+     * 当前登录学生的学生编号
+     */
+    QString sno;
 private:
     /**
      * @brief Data

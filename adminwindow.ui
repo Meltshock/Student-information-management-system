@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1365</width>
+    <width>1532</width>
     <height>706</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>199</horstretch>
+    <verstretch>199</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>400</width>
+    <height>400</height>
+   </size>
   </property>
   <property name="focusPolicy">
    <enum>Qt::ClickFocus</enum>
@@ -21,12 +33,18 @@
     <normaloff>:/SIM_System_Pics/resources/logo_3.png</normaloff>:/SIM_System_Pics/resources/logo_3.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>9</x>
       <y>9</y>
-      <width>1051</width>
+      <width>1221</width>
       <height>651</height>
      </rect>
     </property>
@@ -64,7 +82,7 @@ QTabBar::tab:selected{
        <rect>
         <x>0</x>
         <y>50</y>
-        <width>1052</width>
+        <width>1221</width>
         <height>531</height>
        </rect>
       </property>
@@ -72,7 +90,7 @@ QTabBar::tab:selected{
        <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>116</number>
+       <number>111</number>
       </attribute>
       <column>
        <property name="text">
@@ -82,6 +100,11 @@ QTabBar::tab:selected{
       <column>
        <property name="text">
         <string>课程名称</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>课程类型</string>
        </property>
       </column>
       <column>
@@ -106,6 +129,11 @@ QTabBar::tab:selected{
       </column>
       <column>
        <property name="text">
+        <string>学分</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>开课年级</string>
        </property>
       </column>
@@ -125,11 +153,22 @@ QTabBar::tab:selected{
        <rect>
         <x>-1</x>
         <y>0</y>
-        <width>1051</width>
+        <width>1221</width>
         <height>51</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QToolButton" name="FlushButton">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
+hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
+         </property>
+         <property name="text">
+          <string>刷新</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QToolButton" name="ModifyLessonButton">
          <property name="styleSheet">
@@ -163,17 +202,6 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QToolButton" name="DeleteLessonButton">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
-hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
-         </property>
-         <property name="text">
-          <string>查找课程</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </widget>
@@ -186,11 +214,22 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1051</width>
+        <width>1221</width>
         <height>51</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QToolButton" name="FlushButton_2">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
+hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
+         </property>
+         <property name="text">
+          <string>刷新</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QToolButton" name="ModifyTeacherButton">
          <property name="styleSheet">
@@ -224,30 +263,19 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QToolButton" name="FindLessonButton_2">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
-hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
-         </property>
-         <property name="text">
-          <string>查找教师</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
-     <widget class="QTableWidget" name="LessonWidget_2">
+     <widget class="QTableWidget" name="TeacherWidget">
       <property name="geometry">
        <rect>
         <x>1</x>
         <y>50</y>
-        <width>1051</width>
+        <width>1221</width>
         <height>531</height>
        </rect>
       </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>263</number>
+       <number>410</number>
       </attribute>
       <column>
        <property name="text">
@@ -261,11 +289,6 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
       </column>
       <column>
        <property name="text">
-        <string>教师职称</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
         <string>所在院系</string>
        </property>
       </column>
@@ -275,17 +298,17 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
      <attribute name="title">
       <string>学生管理</string>
      </attribute>
-     <widget class="QTableWidget" name="LessonWidget_3">
+     <widget class="QTableWidget" name="StudentWidget">
       <property name="geometry">
        <rect>
         <x>1</x>
         <y>50</y>
-        <width>1052</width>
+        <width>1221</width>
         <height>531</height>
        </rect>
       </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>210</number>
+       <number>243</number>
       </attribute>
       <column>
        <property name="text">
@@ -318,11 +341,22 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1051</width>
+        <width>1221</width>
         <height>51</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QToolButton" name="FlushButton_3">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
+hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
+         </property>
+         <property name="text">
+          <string>刷新</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QToolButton" name="ModifyStudentButton">
          <property name="styleSheet">
@@ -356,17 +390,6 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QToolButton" name="FindStudentButton">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
-hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
-         </property>
-         <property name="text">
-          <string>查找学生</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </widget>
@@ -379,19 +402,19 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1051</width>
+        <width>1221</width>
         <height>51</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QToolButton" name="toolButton_25">
+        <widget class="QToolButton" name="FlushButton_4">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
 hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
          </property>
          <property name="text">
-          <string>修改奖学金信息</string>
+          <string>刷新</string>
          </property>
         </widget>
        </item>
@@ -417,17 +440,6 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QToolButton" name="toolButton_28">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
-hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
-         </property>
-         <property name="text">
-          <string>查找奖学金</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QListWidget" name="ScholarshipWidget">
@@ -435,7 +447,7 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
        <rect>
         <x>0</x>
         <y>50</y>
-        <width>1052</width>
+        <width>1221</width>
         <height>521</height>
        </rect>
       </property>
@@ -472,12 +484,12 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
      <attribute name="title">
       <string>待处理事项</string>
      </attribute>
-     <widget class="QListWidget" name="ScholarshipWidget_2">
+     <widget class="QListWidget" name="MsgWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1061</width>
+        <width>1221</width>
         <height>571</height>
        </rect>
       </property>
@@ -499,7 +511,7 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>1060</x>
+      <x>1230</x>
       <y>0</y>
       <width>301</width>
       <height>101</height>
@@ -515,7 +527,7 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
    <widget class="QTextBrowser" name="MsgBoard">
     <property name="geometry">
      <rect>
-      <x>1060</x>
+      <x>1230</x>
       <y>100</y>
       <width>301</width>
       <height>551</height>
@@ -528,7 +540,7 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1365</width>
+     <width>1532</width>
      <height>25</height>
     </rect>
    </property>
@@ -544,6 +556,7 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
      <string>管理</string>
     </property>
     <addaction name="actionInit"/>
+    <addaction name="actionDatabaseRenew"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -580,6 +593,11 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
   <action name="actionHelp">
    <property name="text">
     <string>说明文档</string>
+   </property>
+  </action>
+  <action name="actionDatabaseRenew">
+   <property name="text">
+    <string>重置数据库</string>
    </property>
   </action>
  </widget>
