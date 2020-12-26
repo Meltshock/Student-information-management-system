@@ -342,3 +342,156 @@ void AdminWindow::on_ModifyTeacherButton_clicked()
         widget->show();
     }
 }
+
+void AdminWindow::on_FlushButton_5_clicked()
+{
+    ui->MsgWidget->clear();
+    QSqlQuery query;
+    query.exec("select Sname,Rcontent,Response from S2A,Student where S2A.Sno=Student.Sno");
+    if(query.lastError().type()==QSqlError::NoError){
+        while(query.next()){
+            ui->MsgWidget->addItem("学生："+query.value(0).toString()+"  内容:"+query.value(1).toString()+" 回复："+query.value(2).toString());
+        }
+    }else{
+        QMessageBox::warning(this,"查询待处理信息错误",query.lastError().text());
+    }
+    query.exec("select Tname,Rcontent,Response from T2A,Teacher where T2A.Tno=Teacher.Tno");
+    if(query.lastError().type()==QSqlError::NoError){
+        while(query.next()){
+            ui->MsgWidget->addItem("教师："+query.value(0).toString()+" 内容:"+query.value(1).toString()+" 回复："+query.value(2).toString());
+        }
+    }else{
+        QMessageBox::warning(this,"查询待处理信息错误",query.lastError().text());
+    }
+}
+
+void AdminWindow::on_MsgWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    ModifyApplyWidget* widget=new ModifyApplyWidget();
+    QString content="";
+    int i=0;
+    for(;i<item->text().size();i++){
+        if(item->text().at(i)==':'){
+            i++;
+            break;
+        }
+    }
+    for(;i<item->text().size();i++){
+        if(item->text().at(i)==' ') break;
+        else{
+            content+=item->text().at(i);
+        }
+    }
+    qDebug()<<content;
+    widget->setContent(content);
+    widget->show();
+}
+
+void AdminWindow::on_toolButton_27_clicked()
+{
+    QList<QListWidgetItem*> items=ui->ScholarshipWidget->selectedItems();
+    if(items.size()<=0){
+        QMessageBox::warning(this,"错误","您没有选中任何奖学金！");
+
+    }else{
+        QSqlQuery query;
+        for(int i=0;i<items.size();i++){
+            QString name;
+            QString con=items.at(i)->text();
+            for(int j=0;j<con.size();j++){
+                if(con.at(j)=='*') j++;
+                else if(con.at(j)==' ') break;
+                else name+=con.at(j);
+            }
+            query.exec("delete from ScholarLst where Scholarship='"+name+"' delete from ScholarAppli where Scholarship='"+name+"'");
+            if(query.lastError().type()==QSqlError::NoError){
+                QMessageBox::information(this,"删除奖学金","删除奖学金成功！");
+            }else{
+                QMessageBox::warning(this,"错误",query.lastError().text());
+            }
+        }
+    }
+}
+
+void AdminWindow::on_ModifyStudentButton_clicked()
+{
+    ModifyStuWidget *widget=new ModifyStuWidget();
+    QList<QTableWidgetItem*> items=ui->StudentWidget->selectedItems();
+    if(items.size()<=0){
+        QMessageBox::warning(this,"错误","您没有选中任何学生！");
+    }else{
+        int index=ui->StudentWidget->row(items.at(0));
+        widget->setMsg(ui->StudentWidget->item(index,0)->text(),ui->StudentWidget->item(index,1)->text(),ui->StudentWidget->item(index,2)->text(),ui->StudentWidget->item(index,3)->text(),ui->StudentWidget->item(index,4)->text());
+        widget->show();
+    }
+}
+
+void AdminWindow::on_FindLessonButton_clicked()
+{
+    QList<QTableWidgetItem*> items=ui->LessonWidget->selectedItems();
+    if(items.size()<=0){
+        QMessageBox::warning(this,"错误","您没有选中任何课程！");
+    }else{
+        QString res;
+        QSqlQuery query;
+        for(int i=0;i<items.size();i++){
+            int index=ui->LessonWidget->row(items.at(i));
+            query.exec("delete from CourseBasic where Cno='"+ui->LessonWidget->item(index,0)->text()+"'");
+            if(query.lastError().text()!=QSqlError::NoError){
+                res+=query.lastError().text();
+            }
+        }
+        if(res==""){
+            QMessageBox::warning(this,"删除课程","删除课程成功！");
+        }else{
+            QMessageBox::information(this,"删除课程",res);
+        }
+
+    }
+}
+
+void AdminWindow::on_DeleteTeacherButton_clicked()
+{
+    QList<QTableWidgetItem*> items=ui->TeacherWidget->selectedItems();
+    if(items.size()<=0){
+        QMessageBox::warning(this,"错误","您没有选中任何学生！");
+    }else{
+        QString res;
+        QSqlQuery query;
+        for(int i=0;i<items.size();i++){
+            int index=ui->TeacherWidget->row(items.at(i));
+            query.exec("delete from Teacher where Tno='"+ui->TeacherWidget->item(index,0)->text()+"'");
+            if(query.lastError().type()!=QSqlError::NoError){
+                res+=query.lastError().text();
+            }
+        }
+        if(res==""){
+            QMessageBox::information(this,"删除教师","删除教师成功！");
+        }else{
+            QMessageBox::warning(this,"删除教师",query.lastError().text());
+        }
+    }
+}
+
+void AdminWindow::on_DeleteStudentButton_clicked()
+{
+    QList<QTableWidgetItem*> items=ui->StudentWidget->selectedItems();
+    if(items.size()<=0){
+        QMessageBox::warning(this,"错误","您没有选中任何学生！");
+    }else{
+        QString res;
+        QSqlQuery query;
+        for(int i=0;i<items.size();i++){
+            int index=ui->StudentWidget->row(items.at(i));
+            query.exec("delete from Student where Sno='"+ui->StudentWidget->item(index,0)->text()+"'");
+            if(query.lastError().type()!=QSqlError::NoError){
+                res+=query.lastError().text();
+            }
+        }
+        if(res==""){
+            QMessageBox::information(this,"删除学生","删除学生成功！");
+        }else{
+            QMessageBox::warning(this,"删除学生",query.lastError().text());
+        }
+    }
+}

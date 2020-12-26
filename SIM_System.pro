@@ -21,10 +21,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     aboutwidget.cpp \
     adddeptwidget.cpp \
+    addmsgwidget.cpp \
+    addprowidget.cpp \
     addscholarwidget.cpp \
     addstuwidget.cpp \
     addteacherwidget.cpp \
     adminwindow.cpp \
+    applyprowidget.cpp \
+    applyscholarwidget.cpp \
     connectdabasewidget.cpp \
     data.cpp \
     dataquery.cpp \
@@ -34,8 +38,10 @@ SOURCES += \
     loginwidget.cpp \
     main.cpp \
     mainwindow.cpp \
+    modifyapplywidget.cpp \
     modifydeptmsgwidget.cpp \
     modifylessonwidget.cpp \
+    modifystuwidget.cpp \
     modifyteacherwidget.cpp \
     scholarmsgwidget.cpp \
     student.cpp \
@@ -47,10 +53,14 @@ SOURCES += \
 HEADERS += \
     aboutwidget.h \
     adddeptwidget.h \
+    addmsgwidget.h \
+    addprowidget.h \
     addscholarwidget.h \
     addstuwidget.h \
     addteacherwidget.h \
     adminwindow.h \
+    applyprowidget.h \
+    applyscholarwidget.h \
     connectdabasewidget.h \
     data.h \
     dataquery.h \
@@ -59,8 +69,10 @@ HEADERS += \
     loadclassfromwebwidget.h \
     loginwidget.h \
     mainwindow.h \
+    modifyapplywidget.h \
     modifydeptmsgwidget.h \
     modifylessonwidget.h \
+    modifystuwidget.h \
     modifyteacherwidget.h \
     scholarmsgwidget.h \
     student.h \
@@ -72,17 +84,23 @@ HEADERS += \
 FORMS += \
     aboutwidget.ui \
     adddeptwidget.ui \
+    addmsgwidget.ui \
+    addprowidget.ui \
     addscholarwidget.ui \
     addstuwidget.ui \
     addteacherwidget.ui \
     adminwindow.ui \
+    applyprowidget.ui \
+    applyscholarwidget.ui \
     connectdabasewidget.ui \
     deptwidget.ui \
     loadclassfromwebwidget.ui \
     loginwidget.ui \
     mainwindow.ui \
+    modifyapplywidget.ui \
     modifydeptmsgwidget.ui \
     modifylessonwidget.ui \
+    modifystuwidget.ui \
     modifyteacherwidget.ui \
     scholarmsgwidget.ui \
     studentwindow.ui \

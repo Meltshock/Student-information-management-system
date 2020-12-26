@@ -170,17 +170,6 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="ModifyLessonButton">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
-hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
-         </property>
-         <property name="text">
-          <string>修改课程信息</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="FindLessonButton">
          <property name="styleSheet">
           <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
@@ -488,9 +477,9 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>50</y>
         <width>1221</width>
-        <height>571</height>
+        <height>521</height>
        </rect>
       </property>
       <property name="font">
@@ -499,12 +488,41 @@ hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-
         <pointsize>11</pointsize>
        </font>
       </property>
+      <property name="movement">
+       <enum>QListView::Static</enum>
+      </property>
+      <property name="resizeMode">
+       <enum>QListView::Adjust</enum>
+      </property>
       <property name="gridSize">
        <size>
         <width>1000</width>
         <height>40</height>
        </size>
       </property>
+     </widget>
+     <widget class="QWidget" name="widget_5" native="true">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1221</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <widget class="QToolButton" name="FlushButton_5">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);border:2px solid white;border-radius:10px;
+hover{ background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;background-color: rgba(255, 255, 255, 150);border:2px solid white;border-radius:10px;}</string>
+         </property>
+         <property name="text">
+          <string>刷新</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

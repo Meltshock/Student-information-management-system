@@ -16,6 +16,9 @@
 #include<loginwidget.h>
 #include<scholarmsgwidget.h>
 #include<modifyteacherwidget.h>
+#include<applyscholarwidget.h>
+#include<modifyapplywidget.h>
+#include<modifystuwidget.h>
 
 namespace Ui {
 class AdminWindow;
@@ -60,12 +63,26 @@ public slots:
 
     void on_FlushButton_4_clicked();
 
-private slots:
     void on_toolButton_26_clicked();
 
     void on_ScholarshipWidget_itemDoubleClicked(QListWidgetItem *item);
 
     void on_ModifyTeacherButton_clicked();
+
+    void on_FlushButton_5_clicked();
+
+private slots:
+    void on_MsgWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_toolButton_27_clicked();
+
+    void on_ModifyStudentButton_clicked();
+
+    void on_FindLessonButton_clicked();
+
+    void on_DeleteTeacherButton_clicked();
+
+    void on_DeleteStudentButton_clicked();
 
 private:
     Ui::AdminWindow *ui;

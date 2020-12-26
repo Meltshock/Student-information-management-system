@@ -47,7 +47,7 @@ void AddStuWidget::on_ConfirmButton_clicked()
 {
     QStringList info;
     QSqlQuery query;
-    query.exec("select COUNT(Sno) from Student");
+    query.exec("select MAX(Sno) from Student");
     if(query.lastError().type()==QSqlError::NoError){
         if(query.next()){
             int snoIndex=query.value(0).toInt()+1;
@@ -68,21 +68,29 @@ void AddStuWidget::on_ConfirmButton_clicked()
     query.exec("insert into Student values('"+info.at(0)+"','"+info.at(1)+"','"+info.at(2)+"','"+info.at(3)+"','"+info.at(4)+"')");
     if(query.lastError().type()==QSqlError::NoError){
         QStringList sqls;
-        sqls<<"create login S"+info.at(0)+" with password='123456', default_database=E_Chain";
+        QString res;
+        QSqlQuery query1,query2;
+        query1.exec("create login S"+info.at(0)+" with password='123456', default_database=E_Chain");
+        query2.exec("create login S"+info.at(0)+" with password='123456', default_database=E_Chain_Database");
+        if(query1.lastError().type()!=QSqlError::NoError && query2.lastError().type()!=QSqlError::NoError){
+            res+=query1.lastError().text()+"\n"+query2.lastError().text();
+        }
         sqls<<"create user S"+info.at(0)+" for login S"+info.at(0)+" with default_schema=dbo";
         sqls<<"CREATE VIEW S"+info.at(0)+"_Info AS SELECT Sno , Sname, Ssex, Sdept, Sgrade FROM Student WHERE Sno='"+info.at(0)+"'";
         sqls<<"GRANT SELECT ON S"+info.at(0)+"_Info TO S"+info.at(0);
         sqls<<"CREATE VIEW S"+info.at(0)+"_Course AS SELECT DISTINCT Stu_Cour.Cno, Stu_Cour.Cterm FROM Stu_Cour WHERE Stu_Cour.Sno='"+info.at(0)+"'";
         sqls<<"GRANT SELECT, INSERT ON S"+info.at(0)+"_Course TO S"+info.at(0);
         //sqls<<"SELECT S"+info.at(0)+"_Course.Cno, Cname, Tname, S"+info.at(0)+"_Course.Cterm, Wday, Cbegin, Cend FROM S"+info.at(0)+"_Course, CourseBasic, CTime, Tcourse, Teacher WHERE S"+info.at(0)+"_Course.Cno=CourseBasic.Cno AND S"+info.at(0)+"_Course.Cno=Tcourse.Cno AND S"+info.at(0)+"_Course.Cterm=Tcourse.Cterm AND S"+info.at(0)+"_Course.Cno=CTime.Cno AND S"+info.at(0)+"_Course.Cterm=CTime.Cterm";
-        sqls<<"GRANT SELECT ON CourseBasic TO S"+info.at(0);
+        sqls<<"GRANT SELECT,UPDATE ON CourseBasic TO S"+info.at(0);
         sqls<<"GRANT SELECT ON CTime TO S"+info.at(0);
         sqls<<"GRANT SELECT ON Tcourse TO S"+info.at(0);
         sqls<<"GRANT SELECT ON Teacher TO S"+info.at(0);
         sqls<<"GRANT SELECT ON ScholarLst TO S"+info.at(0);
-        sqls<<"GRANT SELECT ON ScholarAppli TO S"+info.at(0);
-        sqls<<"GRANT SELECT ON ProjectAppli TO S"+info.at(0);
+        sqls<<"GRANT SELECT,INSERT ON ScholarAppli TO S"+info.at(0);
+        sqls<<"GRANT SELECT,INSERT ON ProjectAppli TO S"+info.at(0);
+        sqls<<"GRANT SELECT,INSERT,DELETE ON Stu_Cour TO S"+info.at(0);
         sqls<<"GRANT SELECT ON ProjectLst TO S"+info.at(0);
+        sqls<<"GRANT SELECT,INSERT ON S2A TO S"+info.at(0);
         sqls<<"CREATE VIEW S"+info.at(0)+"_Grade AS SELECT DISTINCT Stu_Cour.Cno, Cname, Cchar, Ccredit, Grade,Cterm FROM Stu_Cour, CourseBasic WHERE Stu_Cour.Sno='"+info.at(0)+"' AND Stu_Cour.Cno=CourseBasic.Cno ";
         sqls<<"GRANT SELECT ON S"+info.at(0)+"_Grade TO S"+info.at(0);
         sqls<<"CREATE VIEW S"+info.at(0)+"_S2A AS SELECT Rcontent, Response FROM S2A WHERE Sno='"+info.at(0)+"'";
@@ -92,7 +100,7 @@ void AddStuWidget::on_ConfirmButton_clicked()
         sqls<<"CREATE VIEW S"+info.at(0)+"_Scho AS SELECT Scholarship, Reason, Response FROM ScholarAppli WHERE Sno='"+info.at(0)+"'";
         sqls<<"GRANT SELECT, UPDATE(Scholarship, Reason),INSERT ON S"+info.at(0)+"_Scho TO S"+info.at(0);
 
-        QString res;
+
         for(int i=0;i<sqls.size();i++){
             query.exec(sqls.at(i));
             if(query.lastError().type()==QSqlError::NoError){
