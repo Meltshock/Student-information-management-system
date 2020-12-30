@@ -5,6 +5,8 @@
 #include<aboutwidget.h>
 #include<addprowidget.h>
 #include<addmsgwidget.h>
+#include<promsgwidget.h>
+#include<modifygradewidget.h>
 
 namespace Ui {
 class TeacherWindow;
@@ -35,6 +37,10 @@ private slots:
     void on_StudentLessonBox_currentIndexChanged(const QString &arg1);
 
     void on_AddApplyButton_clicked();
+
+    void on_ProWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_toolButton_clicked();
 
 private:
     Ui::TeacherWindow *ui;
